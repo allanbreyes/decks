@@ -2,8 +2,8 @@
 version: "3"
 
 vars:
-  LINE_LENGTH: 80
   MARP: "marp -c config.js"
+  DECKS: ./decks
 
 tasks:
   default:
@@ -17,10 +17,10 @@ tasks:
   build:
     desc: Build static files.
     cmds:
-      - "{{ .MARP }} *.md"
-      - "{{ .MARP }} --pdf *.md"
+      - "{{ .MARP }} --input-dir {{ .DECKS }}"
+      - "{{ .MARP }} --pdf {{ .DECKS }}"
 
   serve:
     desc: Serve decks.
     cmds:
-      - "{{ .MARP }} -s ./"
+      - "{{ .MARP }} --server --input-dir {{ .DECKS }}/"
