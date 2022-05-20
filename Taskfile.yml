@@ -3,7 +3,7 @@ version: "3"
 
 vars:
   MARP: "marp -c config.js"
-  DECKS: ./decks
+  DECKS: ./docs
 
 tasks:
   default:
