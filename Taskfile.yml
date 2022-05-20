@@ -1,0 +1,26 @@
+---
+version: "3"
+
+vars:
+  LINE_LENGTH: 80
+  MARP: "marp -c config.js"
+
+tasks:
+  default:
+    - task: serve
+
+  up:
+    desc: Run nix-shell and task runner. Assumes taskfile installed locally.
+    cmds:
+      - nix-shell --run "task"
+
+  build:
+    desc: Build static files.
+    cmds:
+      - "{{ .MARP }} *.md"
+      - "{{ .MARP }} --pdf *.md"
+
+  serve:
+    desc: Serve decks.
+    cmds:
+      - "{{ .MARP }} -s ./"
