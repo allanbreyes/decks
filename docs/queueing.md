@@ -530,6 +530,9 @@ Ref: [Kafka: a Distributed Messaging System for Log Processing][kafka] (Kreps 20
 Queueing is central to systems performance:
 - Latency (response time)
 - Throughput
+- Blocking $\rightarrow$ starvation
+
+Ref/Example: [Don't Block the Event Loop (or the Worker Pool)](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/) (node.js docs)
 
 ---
 # Hidden bottlenecks
@@ -649,6 +652,40 @@ Ref: [Task Assignment with Unknown Duration][tags] (Harchol-Balter 2002)
 </div>
 
 ---
+# (Don't forget) security!
+
+<div class="columns">
+<div class="hcenter vcenter">
+
+```plantuml
+@startuml
+left to right direction
+
+actor Alice
+actor Bob
+actor Mallory
+actor Eve
+queue queue
+
+Alice --> queue
+queue --> Bob
+Mallory -[#red,dashed]> queue : tamper
+queue -[#red,dashed]> Eve : eavesdrop
+@enduml
+```
+
+</div>
+
+- Access control: who can send/receive?
+- Authenticity: who did the message come from?
+- Integrity: did the message change?
+- Access control $\neq$ authenticity, integrity
+- 💡 Queues are just channels. If you want security and privacy, you must secure it end-to-end.
+- Ref: [End-to-end Arguments in System Design][e2e] (Saltzer 1984)
+
+</div>
+
+---
 # Key takeaways
 
 - Queueing is critical to performance, both response time and throughput
@@ -664,6 +701,8 @@ There's _so_ much more. Where to learn more about queueing?
 # Reading
 
 - [Controlling Queue Delay][codel] (Nichols 2012)
+- [Don't Block the Event Loop (or the Worker Pool)](https://nodejs.org/en/docs/guides/dont-block-the-event-loop/) (node.js)
+- [End-to-end Arguments in System Design][e2e] (Saltzer 1984)
 - [The Every Computer Performance Book][ecpb] (Wescott 2013)
 - [Guerilla Capacity Planning][gcp] (Gunther 2007)
 - [Kafka: a Distributed Messaging System for Log Processing][kafka] (Kreps 2011)
@@ -675,6 +714,7 @@ There's _so_ much more. Where to learn more about queueing?
 [bandaid]: https://dropbox.tech/infrastructure/meet-bandaid-the-dropbox-service-proxy
 [codel]: https://dl.acm.org/doi/pdf/10.1145/2208917.2209336?download=true
 [ecpb]: https://www.amazon.com/Every-Computer-Performance-Book-Wescott/dp/1482657759
+[e2e]: https://web.mit.edu/Saltzer/www/publications/endtoend/endtoend.pdf
 [gcp]: http://www.perfdynamics.com/books.html
 [kafka]: https://www.microsoft.com/en-us/research/wp-content/uploads/2017/09/Kafka.pdf
 [ovc]: https://kilthub.cmu.edu/articles/journal_contribution/Open_Versus_Closed_A_Cautionary_Tale/6608078/1

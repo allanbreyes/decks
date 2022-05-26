@@ -2,7 +2,7 @@
 version: "3"
 
 vars:
-  MARP: "marp -c config.js"
+  MARP: "marp -c config.js --html"
   DECKS: ./docs
 
 tasks:
@@ -18,7 +18,7 @@ tasks:
     desc: Build static files.
     cmds:
       - "{{ .MARP }} --input-dir {{ .DECKS }}"
-      - "{{ .MARP }} --pdf {{ .DECKS }}"
+      - "{{ .MARP }} --allow-local-files --pdf {{ .DECKS }}"
 
   serve:
     desc: Serve decks.
