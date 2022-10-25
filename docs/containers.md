@@ -151,12 +151,7 @@ curl -o alpine.tar.gz $URL  # Download Alpine mini root filesystem
 tar xzvf alpine.tar.gz      # Extract
 chroot $PWD sh              # Change the root
 ps aux                      # List processes from /proc
-sh                          # Run several subshells (like 10 times)
-```
-
-But it only isolates the file system...
-```bash
-ps -aef --forest            # Run in another terminal
+touch foo bar baz           # Write a bunch of files
 ```
 
 _Disclaimer: `pivot_root` is more secure... you can break out of `chroot`!_
@@ -263,6 +258,8 @@ Try this with the alpine mini rootfs!
 - Secure computing
 - Linux capabilities
 - Overlays
+
+💡 Docker manages and wraps these things for you! 💖🐋
 
 Ref: [How Containers Work][julia] (Evans 2020)
 
