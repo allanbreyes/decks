@@ -1,6 +1,6 @@
-with import <nixpkgs> {};
+{ pkgs }:
 
-stdenv.mkDerivation {
+with pkgs; pkgs.stdenv.mkDerivation {
   name = "node";
   buildInputs = [
     go-task
