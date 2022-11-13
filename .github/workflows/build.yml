@@ -17,7 +17,8 @@ jobs:
         uses: cachix/install-nix-action@daddc62a2e67d1decb56e028c9fa68344b9b7c2a # ratchet:cachix/install-nix-action@v18
       - name: Render HTML
         run: nix build
-      - name: Deploy to GH Page
-        uses: JamesIves/github-pages-deploy-action@164583b9e44b4fc5910e78feb607ea7c98d3c7b9 # ratchet:JamesIves/github-pages-deploy-action@4
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@de7ea6f8efb354206b205ef54722213d99067935 # ratchet:peaceiris/actions-gh-pages@v3
         with:
-          folder: result
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./result
