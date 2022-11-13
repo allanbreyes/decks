@@ -1,0 +1,24 @@
+name: Build
+on:
+  push:
+    branches: [main, build]
+permissions:
+  contents: write
+jobs:
+  build:
+    concurrency:
+      group: build-${{ github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # ratchet:actions/checkout@v3
+      - name: Install nix
+        uses: cachix/install-nix-action@daddc62a2e67d1decb56e028c9fa68344b9b7c2a # ratchet:cachix/install-nix-action@v18
+      - name: Render HTML
+        run: nix build
+      - name: Deploy to GH Page
+        uses: JamesIves/github-pages-deploy-action@164583b9e44b4fc5910e78feb607ea7c98d3c7b9 # ratchet:JamesIves/github-pages-deploy-action@4
+        with:
+          branch: gh-pages
+          folder: result
