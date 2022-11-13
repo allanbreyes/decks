@@ -3,11 +3,12 @@
 with pkgs; pkgs.stdenv.mkDerivation {
   name = "node";
   buildInputs = [
-    go-task
     chromium
+    go-task
+    node2nix
     nodejs
   ];
   shellHook = ''
-    export PATH="$PWD/node_modules/.bin/:$PATH"
+    export PATH="$PWD/node_modules/.bin:$PATH"
   '';
 }

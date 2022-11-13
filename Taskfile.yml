@@ -2,25 +2,28 @@
 version: "3"
 
 vars:
-  MARP: "marp -c config.js --html"
-  DECKS: ./docs
+  NODE: ./node
 
 tasks:
   default:
     - task: serve
 
-  up:
-    desc: Run nix-shell and task runner. Assumes taskfile installed locally.
-    cmds:
-      - nix-shell --run "task"
-
   build:
     desc: Build static files.
     cmds:
-      - "{{ .MARP }} --input-dir {{ .DECKS }}"
-      - "{{ .MARP }} --allow-local-files --pdf {{ .DECKS }}"
+      - nix build
+
+  node2nix:
+    desc: Update Node.js dependencies.
+    cmds:
+      - >-
+        node2nix
+        --input {{ .NODE }}/packages.json
+        --node-env {{ .NODE }}/node-env.nix
+        --composition {{ .NODE }}/default.nix
+        --output {{ .NODE }}/node-packages.nix
 
   serve:
     desc: Serve decks.
     cmds:
-      - "{{ .MARP }} --server --input-dir {{ .DECKS }}/"
+      - nix run ./ -- --config src/config.js --server --input-dir src/
