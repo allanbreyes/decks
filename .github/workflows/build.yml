@@ -20,5 +20,4 @@ jobs:
       - name: Deploy to GH Page
         uses: JamesIves/github-pages-deploy-action@164583b9e44b4fc5910e78feb607ea7c98d3c7b9 # ratchet:JamesIves/github-pages-deploy-action@4
         with:
-          branch: gh-pages
           folder: result

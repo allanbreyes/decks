@@ -17,12 +17,10 @@
       name = "content";
       src = ./src;
       buildInputs = [
-        pkgs.chromium
         pkgs.nodejs
         node.${marp}
       ];
       installPhase = ''
-        export CHROME_PATH=${pkgs.chromium}/bin/chromium
         export HOME=$(mktemp -d)
         mkdir -p $out
         cp -r ./img $out
