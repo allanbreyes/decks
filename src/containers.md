@@ -15,7 +15,7 @@ A primer on containers, Docker, (and a bit on virtualization)
 - 50% first principles: how containers work under the hood
 - 50% pragmatic: how to write really basic containers
 - 90% in the terminal... sorry!
-- Notes at https://github.com/allanbreyes/decks/blob/main/docs/containers.md
+- Notes at https://github.com/allanbreyes/decks/blob/main/src/containers.md
 
 ---
 # Trusted Computing Base (TCB)
